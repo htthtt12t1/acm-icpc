@@ -30,6 +30,7 @@ int GetLCA(int u, int v)
     if (h[u] < h[v]) swap(u, v);
     int k = log2(h[u]);
     for(int i=k; i>=0; --i) if (h[u] - (1 << i) >= h[v]) u = p[u][i];
+    if (u == v) return u;
     for(int i=k; i>=0; --i) 
         if (p[u][i] != p[v][i] && p[u][i] != -1){
             u = p[u][i];
