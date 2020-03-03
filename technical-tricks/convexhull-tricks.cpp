@@ -41,7 +41,7 @@ int main()
     sort(a+1, a+n+1);
     vector<ii> b;
     for(int i=1; i<=n; ++i) {
-        while (b.size() && b.back().se < a[i].se) b.pop_back();
+        while (b.size() && b.back().se <= a[i].se) b.pop_back();
         b.push_back(a[i]);
     }
     n = b.size();
