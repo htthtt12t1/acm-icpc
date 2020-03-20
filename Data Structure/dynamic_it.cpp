@@ -1,53 +1,76 @@
 #include<bits/stdc++.h>
-
+#define se second
+#define fi first
 using namespace std;
-
-struct node;
-node *newNode();
-struct node {
-    int lv, rv, sum;
-    node *left, *right;
-    node() : left(NULL), right(NULL), sum(0) {}
-    inline void init(int l, int r) {
-        lv = l;
-        rv = r;
-    }
-    inline void extend() {
-        if (!left) {
-            int m = (lv + rv) / 2;
-            left = newNode();
-            right = newNode();
-            left->init(lv, m);
-            right->init(m + 1, rv);
-        }
-    }
-    int getSum(int l, int r) {
-        if (r < lv || rv < l) {
-            return 0;
-        }
-        if (l <= lv && rv <= r) {
-            return sum;
-        }
-        extend();
-        return left->getSum(l, r) + right->getSum(l, r);
-    }
-    void update(int p, int newVal) {
-        if (lv == rv) {
-            sum = newVal;
-            return;
-        }
-        extend();
-        (p <= left->rv ? left : right)->update(p, newVal);
-        sum = left->sum + right->sum;
-    }
+const int maxn = 2e5 + 10, mod = 1e9 + 7;
+typedef pair<int,int> ii;
+typedef pair<long long, long long> ll;
+ 
+struct Node{
+      int left, right;
+      long long res, lazy;
+      Node *p1, *p2;
 };
-node *newNode() {
-    static int bufSize = 1e7;
-    static node buf[(int) 1e7];
-    assert(bufSize);
-    return &buf[--bufSize];
+Node *st;
+ 
+Node *CreateNode(int l, int r, long long sum)
+{
+      Node *p; p = new Node;
+      p->lazy = p->res = sum;
+      p->left = l; p-> right = r;
+      p->p1 = p->p2 = NULL;
+      return p;
 }
-int main() {
-	node *rmq = newNode();
-	rmq->init(0, 1e9);
+void down(Node *id)
+{
+      int mid = (id->left + id->right) >> 1;
+      if (id->p1 == NULL) id->p1 = CreateNode(id->left, mid, 0); 
+      if (id->p2 == NULL) id->p2 = CreateNode(mid+1, id->right, 0); 
+      
+      Node *a = id->p1, *b = id->p2;
+      a->res += id->lazy; a->lazy+= id->lazy;
+      b->res += id->lazy; b->lazy+= id->lazy;
+ 
+      id->lazy = 0;
+ 
+}
+void update(Node *id, int u, int v, int c)
+{
+      if (id->left > v || id->right < u) return;
+      if (u <= id->left && id->right <= v) {
+            id->lazy += c;
+            id->res += c;
+            return;
+      }
+      down(id);
+      update(id->p1, u, v, c);
+      update(id->p2, u, v, c);
+ 
+      Node *a = id->p1, *b = id->p2;
+      id->res = max(a->res, b->res);
+}
+long long get_ans(Node *id, int u, int v)
+{
+      if (id->left > v || id->right < u) return -1;
+      if (u <= id->left && id->right <= v) return id->res;
+      down(id);
+      return max(get_ans(id->p1, u, v), get_ans(id->p2, u, v));
+}
+ 
+int main()
+{
+      int n, q, u, v, c, t; 
+      cin >> n >> q;
+      st = CreateNode(1, n, 0);
+ 
+      while (q--){
+            cin >> t;
+            if (t) {
+                  cin >> u >> v;
+                  cout << get_ans(st, u, v) << "\n";
+            } else {
+                  cin >> u >> v >> c;
+                  update(st, u, v, c);
+            }
+      }
 }
