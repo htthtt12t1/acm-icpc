@@ -1,11 +1,7 @@
 #include<bits/stdc++.h>
-#define se second
-#define fi first
+
 using namespace std;
-const int maxn = 2e5 + 10, mod = 1e9 + 7;
-typedef pair<int,int> ii;
-typedef pair<long long, long long> ll;
- 
+
 struct Node{
       int left, right;
       long long res, lazy;
