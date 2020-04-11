@@ -1,11 +1,19 @@
-try:
-    import Queue as Q 
-except ImportError:
-    import queue as Q
+import heapq
 
-q = Q.PriorityQueue()
-q.put(10)
-q.put(1)
-q.put(5)
-while not q.empty():
-	print (q.get())
+heap = []
+heapq.heappush(heap, (1, 'one'))
+heapq.heappush(heap, (10, 'ten'))
+heapq.heappush(heap, (5,'five'))
+
+for x in heap:
+	print (x),
+print
+
+heapq.heappop(heap)
+
+for x in heap:
+	print (x),
+print 
+
+# the smallest
+print (heap[0])
