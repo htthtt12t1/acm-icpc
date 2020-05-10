@@ -1,4 +1,4 @@
-// Count how many of SQ numbers which their square digits is a prime. 
+// Count how many of SQ numbers which their sum of square digits is a prime. 
 // Input: Number N and S (N, S <= 10^18)
 // Output: The N_th SQ number and the position of S in lexicography order.
 
