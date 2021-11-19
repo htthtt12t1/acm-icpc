@@ -1,4 +1,4 @@
-# acm-icpc
+# Github Workspace ACM ICPC
 
 ## Tên thành viên
 - Nguyễn Vĩnh Hưng (nhóm trưởng): KHTN2020
