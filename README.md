@@ -1,9 +1,12 @@
 # UIT.TF.HQT
 
 ## Tên thành viên
-- Nguyễn Vĩnh Hưng: KHTN2020
-- Võ Minh Quân: KHTN2021
-- Hứa Thanh Tân: KHTN2019
+
+|Tên thành viên   | Lớp      |   
+|-----------------|----------|
+|Nguyễn Vĩnh Hưng | KHTN2020 |
+|Võ Minh Quân     | KHTN2021 |
+|Hứa Thanh Tân    | KHTN2019 |
 
 ## Kỳ thi
 - Vietnam National Contest 2014
