@@ -50,7 +50,7 @@ int main()
         village[s] = i;
     }
 
-    for(int i = 0; i < M; ++i)
+    for(int i = 0; i < N; ++i)
     {
         string s, t; int c;
         cin >> s >> t >> c;
